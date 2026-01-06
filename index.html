@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年度项目成本统计表（按实施成本从高到低）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "微软雅黑", "宋体", sans-serif;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .stats {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3498db;
+        }
+
+        .stats-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .stats-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .stats-content span {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #eef5fb;
+            transition: background-color 0.3s ease;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+
+        .project-anchor {
+            margin: 40px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+        }
+
+        .anchor-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .anchor-content {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .back-to-top {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 核心统计信息 -->
+        <div class="title">年度项目成本统计表（按实施成本从高到低编排）</div>
+
+        <div class="stats">
+            <div class="stats-title">核心成本统计信息</div>
+            <div class="stats-content">
+                1. 项目总数量：<span>24个</span><br>
+                2. 有效实施成本项目（排除无数值项）：<span>22个</span><br>
+                3. 最高实施成本：<span>72.5天（通恒项目）</span><br>
+                4. 最低有效实施成本：<span>0.5天（迈尔工具项目）</span><br>
+                5. 实施成本汇总（有效项）：<span>567.75天</span><br>
+                6. 平均实施成本（有效项）：<span>约23.66天</span>
+            </div>
+        </div>
+
+        <!-- 项目成本表格（支持点击跳转） -->
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>项目名称</th>
+                    <th>核心内容（精简）</th>
+                    <th>实施成本（天）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><a href="#project1">通恒项目</a></td>
+                    <td>数字工厂、多平台、巡检、设备监测</td>
+                    <td>72.5</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><a href="#project2">进强茶机数字孪生项目</a></td>
+                    <td>茶厂 3D 仿真、产线监测 / 控、工艺模板</td>
+                    <td>58.5</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><a href="#project3">鑫佳硕项目</a></td>
+                    <td>数字工厂、多平台、巡检、洞察、低代码</td>
+                    <td>56.25</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><a href="#project4">茗皇项目</a></td>
+                    <td>数字工厂、多平台、巡检、洞察、设备监测</td>
+                    <td>54.5</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><a href="#project5">龙成耐火数字孪生项目</a></td>
+                    <td>数字工厂、多平台、巡检、洞察</td>
+                    <td>53.5</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><a href="#project6">维达制浆项目</a></td>
+                    <td>制浆专项数字化</td>
+                    <td>49.5</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><a href="#project7">宁波汇众数字孪生改造项目</a></td>
+                    <td>工厂展示、设备监测、云平台、价值场景</td>
+                    <td>35</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><a href="#project8">企瑞机械数字孪生项目</a></td>
+                    <td>数字工厂、多平台、数据雷达</td>
+                    <td>27</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><a href="#project9">普锐明项目</a></td>
+                    <td>数字工厂、知识平台、低代码、数据看板</td>
+                    <td>27</td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td><a href="#project10">华盛纸业项目</a></td>
+                    <td>数字工厂、多平台、低代码</td>
+                    <td>26.75</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><a href="#project11">顶丰五金数字孪生项目</a></td>
+                    <td>数字工厂、多平台</td>
+                    <td>24</td>
+                </tr>
+
+                <tr>
+                    <td>12</td>
+                    <td><a href="#project12">上海联影二期工厂 IOC 项目</a></td>
+                    <td>（场景暂定）</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td><a href="#project13">川特项目</a></td>
+                    <td>数字工厂、知识平台、巡检、洞察</td>
+                    <td>16.5</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td><a href="#project14">西垄人项目</a></td>
+                    <td>巡检、洞察、数据监测</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td><a href="#project15">中宁硅业项目</a></td>
+                    <td>数字工厂</td>
+                    <td>11.5</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td><a href="#project16">国宇塑业项目</a></td>
+                    <td>数字工厂、幻影平台</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td><a href="#project17">玖维项目</a></td>
+                    <td>数字工厂、多平台</td>
+                    <td>8.5</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td><a href="#project18">维达软抽项目</a></td>
+                    <td>产线平衡</td>
+                    <td>7.5</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td><a href="#project19">景琦项目</a></td>
+                    <td>数字工厂、多平台</td>
+                    <td>6.5</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td><a href="#project20">宁波八方彩印数字孪生项目</a></td>
+                    <td>产线 / 设备 / 班组效率分析、数据采集</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td><a href="#project21">中显光电数字孪生项目</a></td>
+                    <td>（已暂停）</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td><a href="#project22">天际互感项目</a></td>
+                    <td>系统交付</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td><a href="#project23">龙成耐火二期项目</a></td>
+                    <td>远程漫游、立库监测</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td><a href="#project24">迈尔工具项目</a></td>
+                    <td>数字工厂</td>
+                    <td>0.5</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+        <!-- 项目锚点详情（点击表格项目跳转至此） -->
+        <div class="project-anchor" id="project1">
+            <div class="anchor-title">1. 通恒项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台、巡检、设备监测<br>
+                实施成本：72.5天（项目实施成本最高）
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project2">
+            <div class="anchor-title">2. 进强茶机数字孪生项目</div>
+            <div class="anchor-content">
+                核心内容：茶厂 3D 仿真、产线监测 / 控、工艺模板<br>
+                实施成本：58.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project3">
+            <div class="anchor-title">3. 鑫佳硕项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台、巡检、洞察、低代码<br>
+                实施成本：56.25天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project4">
+            <div class="anchor-title">4. 茗皇项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台、巡检、洞察、设备监测<br>
+                实施成本：54.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project5">
+            <div class="anchor-title">5. 龙成耐火数字孪生项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台、巡检、洞察<br>
+                实施成本：53.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project6">
+            <div class="anchor-title">6. 维达制浆项目</div>
+            <div class="anchor-content">
+                核心内容：制浆专项数字化<br>
+                实施成本：49.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project7">
+            <div class="anchor-title">7. 宁波汇众数字孪生改造项目</div>
+            <div class="anchor-content">
+                核心内容：工厂展示、设备监测、云平台、价值场景<br>
+                实施成本：35天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project8">
+            <div class="anchor-title">8. 企瑞机械数字孪生项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台、数据雷达<br>
+                实施成本：27天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project9">
+            <div class="anchor-title">9. 普锐明项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、知识平台、低代码、数据看板<br>
+                实施成本：27天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project10">
+            <div class="anchor-title">10. 华盛纸业项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台、低代码<br>
+                实施成本：26.75天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project11">
+            <div class="anchor-title">11. 顶丰五金数字孪生项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台<br>
+                实施成本：24天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project12">
+            <div class="anchor-title">12. 上海联影二期工厂 IOC 项目</div>
+            <div class="anchor-content">
+                核心内容：（场景暂定）<br>
+                实施成本：20天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project13">
+            <div class="anchor-title">13. 川特项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、知识平台、巡检、洞察<br>
+                实施成本：16.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project14">
+            <div class="anchor-title">14. 西垄人项目</div>
+            <div class="anchor-content">
+                核心内容：巡检、洞察、数据监测<br>
+                实施成本：12天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project15">
+            <div class="anchor-title">15. 中宁硅业项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂<br>
+                实施成本：11.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project16">
+            <div class="anchor-title">16. 国宇塑业项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、幻影平台<br>
+                实施成本：9天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project17">
+            <div class="anchor-title">17. 玖维项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台<br>
+                实施成本：8.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project18">
+            <div class="anchor-title">18. 维达项目</div>
+            <div class="anchor-content">
+                核心内容：产线平衡<br>
+                实施成本：7.5天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project19">
+            <div class="anchor-title">19. 景琦项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂、多平台<br>
+                实施成本：6.5天
+            </div>
+        </div>
+
+      <div class="project-anchor" id="project20">
+            <div class="anchor-title">20. 宁波八方彩印数字孪生项目</div>
+            <div class="anchor-content">
+                核心内容：产线 / 设备 / 班组效率分析、数据采集<br>
+                实施成本：无明确数值
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project21">
+            <div class="anchor-title">21. 中显光电数字孪生项目</div>
+            <div class="anchor-content">
+                核心内容：（已暂停）<br>
+                实施成本：1天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project22">
+            <div class="anchor-title">22. 天际互感项目</div>
+            <div class="anchor-content">
+                核心内容：系统交付<br>
+                实施成本：1天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project23">
+            <div class="anchor-title">23. 龙成耐火二期项目</div>
+            <div class="anchor-content">
+                核心内容：远程漫游、立库监测<br>
+                实施成本：1天
+            </div>
+        </div>
+
+        <div class="project-anchor" id="project24">
+            <div class="anchor-title">24. 迈尔工具项目</div>
+            <div class="anchor-content">
+                核心内容：数字工厂<br>
+                实施成本：0.5天（项目实施成本最低）
+            </div>
+        </div>
+
+        <!-- 返回顶部链接 -->
+        <a href="#" class="back-to-top">⬆ 返回顶部</a>
+    </div>
+</body>
+</html>
